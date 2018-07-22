@@ -1,0 +1,41 @@
+{
+  "name": "angualr6-webpack-seed",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "rimraf dist && cross-env NODE_ENV=dev  webpack --progress --profile --trace-deprecation",
+    "prod": "rimraf dist && cross-env NODE_ENV=prod  webpack --progress --profile --trace-deprecation",
+    "build": "npm run dev",
+    "start": "rimraf dist && cross-env NODE_ENV=dev webpack-dev-server --open"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@angular/common": "^6.0.9",
+    "@angular/compiler": "^6.0.9",
+    "@angular/core": "^6.0.9",
+    "@angular/platform-browser": "^6.0.9",
+    "@angular/platform-browser-dynamic": "^6.0.9",
+    "core-js": "^2.5.7",
+    "rxjs": "^6.2.2",
+    "typescript": "~2.7.2",
+    "zone.js": "^0.8.26"
+  },
+  "devDependencies": {
+    "@angular/compiler-cli": "^6.0.9",
+    "@ngtools/webpack": "^6.0.8",
+    "cross-env": "^5.2.0",
+    "css-loader": "^1.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "raw-loader": "^0.5.1",
+    "sass-loader": "^7.0.3",
+    "style-loader": "^0.21.0",
+    "to-string-loader": "^1.1.5",
+    "webpack": "^4.16.1",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.4",
+    "webpack-merge": "^4.1.3"
+  }
+}
