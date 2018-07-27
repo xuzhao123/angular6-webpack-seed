@@ -4,7 +4,7 @@ const ngToolsWebpack = require('@ngtools/webpack');
 
 const helpers = require('./helpers');
 
-module.exports = function (options) {
+module.exports = function (options = {}) {
     const isProd = options.env === 'production';
 
     const angularCompilerPluginOptions = {
@@ -29,9 +29,6 @@ module.exports = function (options) {
             extensions: ['.ts', '.js'],
             modules: [helpers.root('src'), helpers.root('node_modules')],
         },
-        devServer: {
-            historyApiFallback: true
-        },
         optimization: {
             runtimeChunk: {
                 name: 'runtime'
@@ -48,11 +45,11 @@ module.exports = function (options) {
                         name: "vendors",
                         chunks: "all"
                     },
-                    // commons: {
-                    //     name: "commons",
-                    //     chunks: "all",
-                    //     minChunks: 2
-                    // },
+                    commons: {
+                        name: "commons",
+                        chunks: "all",
+                        minChunks: 2
+                    },
                     styles: {
                         name: 'styles',
                         test: /.(scss|css)$/,
@@ -86,23 +83,6 @@ module.exports = function (options) {
                     test: /\.scss$/,
                     use: ['to-string-loader', 'css-loader', 'sass-loader'],
                     include: [helpers.root('src', 'app')]
-                },
-                {
-                    test: /\.(scss|sass)$/,
-                    use: [
-                        'style-loader',
-                        'css-loader',
-                        'sass-loader'
-                    ],
-                    include: [helpers.root('src', 'styles')]
-                },
-                {
-                    test: /\.(css)$/,
-                    use: [
-                        'style-loader',
-                        'css-loader'
-                    ],
-                    include: [helpers.root('src', 'styles')]
                 },
                 {
                     test: /\.html$/,

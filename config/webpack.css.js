@@ -1,32 +1,26 @@
 const path = require('path');
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const common = require('./webpack.common');
 
 const helpers = require('./helpers');
 
 module.exports = function (options) {
     return webpackMerge(common(options), {
-        mode: 'development',
+        mode: 'production',
         output: {
             path: helpers.root('dist'),
-            filename: '[name].[hash].js',
-            chunkFilename: '[id].[hash].js',
-            sourceMapFilename: '[file].map',
-        },
-        devtool: 'cheap-module-eval-source-map',
-        devServer: {
-            open: false,
-            contentBase: './dist',
-            hot: true,
-            historyApiFallback: true
+            filename: '[name].[chunkhash].js',
+            chunkFilename: '[name].[chunkhash].js',
+            sourceMapFilename: '[file].map'
         },
         module: {
             rules: [
                 {
                     test: /\.(scss|sass)$/,
                     use: [
-                        'style-loader',
+                        MiniCssExtractPlugin.loader,
                         'css-loader',
                         'sass-loader'
                     ],
@@ -35,7 +29,7 @@ module.exports = function (options) {
                 {
                     test: /\.(css)$/,
                     use: [
-                        'style-loader',
+                        MiniCssExtractPlugin.loader,
                         'css-loader'
                     ],
                     include: [helpers.root('src', 'styles')]
@@ -59,7 +53,10 @@ module.exports = function (options) {
             ]
         },
         plugins: [
-            new webpack.HotModuleReplacementPlugin(),
-        ],
+            new MiniCssExtractPlugin({
+                filename: 'css/[name].[contenthash].css',
+                chunkFilename: 'css/[name].[contenthash].css'
+            })
+        ]
     });
 };

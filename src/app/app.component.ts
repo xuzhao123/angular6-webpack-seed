@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 
+export const ROOT_SELECTOR = 'app-root';
+
 @Component({
-    selector: 'app-root',
+    selector: ROOT_SELECTOR,
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css']
+    styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
     title = '12345dsfd6f'

@@ -17,6 +17,23 @@ module.exports = function (options) {
         module: {
             rules: [
                 {
+                    test: /\.(scss|sass)$/,
+                    use: [
+                        'style-loader',
+                        'css-loader',
+                        'sass-loader'
+                    ],
+                    include: [helpers.root('src', 'styles')]
+                },
+                {
+                    test: /\.(css)$/,
+                    use: [
+                        'style-loader',
+                        'css-loader'
+                    ],
+                    include: [helpers.root('src', 'styles')]
+                },
+                {
                     test: /\.(eot|svg|cur)$/,
                     loader: 'file-loader',
                     options: {
